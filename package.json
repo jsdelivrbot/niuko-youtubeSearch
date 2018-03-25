@@ -6,7 +6,7 @@
   "repository": "git@github.com:albertobisello/niuko-youtubeSearch.git",
   "scripts": {
     "start": "webpack-dev-server --profile --progress --colors --config ./webpack.config.dev.js",
-    "test": "mocha --compilers js:babel-core/register --require ./test/test_helper.js --recursive ./test",
+    "test": "BABEL_ENV=test mocha --compilers js:babel-core/register --recursive ./test",
     "test:watch": "npm run test -- --watch"
   },
   "author": "",
@@ -30,18 +30,20 @@
     "webpack-merge": "^4.1.2"
   },
   "dependencies": {
+    "babel-cli": "^6.26.0",
     "babel-plugin-import": "^1.6.6",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-env": "^1.6.1",
     "babel-preset-stage-1": "^6.1.18",
     "cache-loader": "^1.2.2",
+    "cross-fetch": "^2.1.0",
     "dotenv-webpack": "^1.5.5",
     "lodash": "^4.17.5",
+    "query-string": "^6.0.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-redux": "^5.0.7",
     "react-router": "^4.2.0",
-    "redux": "^3.0.4",
-    "youtube-api-search": "0.0.5"
+    "redux": "^3.0.4"
   }
 }
