@@ -1,35 +1,25 @@
 import React from 'react'
 
-const videos = [
-  {
-    title: 'Avengers',
-    url: 'https://video.youtube'
-  },
-  {
-    title: 'Spiderman',
-    url: 'https://video.youtube'
-  },
-  {
-    title: 'Thor',
-    url: 'https://video.youtube'
-  }
-]
-
-const getVideoJsx = () => {
+const getVideoJsx = (videos) => {
   return videos.map((movie) => {
+    const key = movie.etag
+    const snippet = movie.snippet
+    const {title, description} = snippet
+    const thumbUrl = snippet.thumbnails.default.url
     return (
-      <div>
-        <div> movie.title</div>
-        <video src={movie.url}/>
+      <div key={key}>
+        <div>{title}</div> <br />
+        <div>{description}</div>
+        <img src={thumbUrl}/>
       </div>
     )
   })
 }
 
-const VideoList = () => {
+const VideoList = ({videos}) => {
   return (
     <div>
-      {getVideoJsx()}
+      {getVideoJsx(videos)}
     </div>
   )
 }
