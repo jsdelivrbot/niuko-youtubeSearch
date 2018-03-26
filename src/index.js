@@ -12,21 +12,33 @@ class App extends React.Component {
     super(props)
     this.state = {
       videos: [],
-      selectedVideo: null
+      selectedVideo: null,
+      searchInput: 'Marvel Movies'
     }
   }
 
-  componentDidMount() {
-    Ysearch({key: API_KEY_YOUTUBE, term: 'Marvel Movies'}).then((res) => {
+  searchYoutube(searchInput) {
+    Ysearch({key: API_KEY_YOUTUBE, term: searchInput}).then((res) => {
       const videos = res.items
       this.setState({videos, selectedVideo: videos[0]})
     }).catch((e) => console.log(e))
   }
 
+  componentDidMount() {
+    this.searchYoutube(this.state.searchInput)
+  }
+
   render() {
     return (
       <div>
-        <SearchBar/>
+        <SearchBar
+          searchInput={this.state.searchInput}
+          onChangeInput={(newInput) => {
+            this.setState({
+              searchInput: newInput
+            })
+            this.searchYoutube(newInput)
+          }}/>
         <VideoDetail video={this.state.selectedVideo}/>
         <VideoList
           videos={this.state.videos}
