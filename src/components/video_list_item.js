@@ -20,9 +20,9 @@ const getVideoJsx = (videos, onVideoSelect) => {
 
 const VideoList = ({videos, onVideoSelect}) => {
   return (
-    <div>
+    <ul className="col-md-4 list-group">
       {getVideoJsx(videos, onVideoSelect)}
-    </div>
+    </ul>
   )
 }
 

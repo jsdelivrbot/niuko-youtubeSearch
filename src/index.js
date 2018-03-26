@@ -27,7 +27,6 @@ class App extends React.Component {
     return (
       <div>
         <SearchBar/>
-        <br/>
         <VideoDetail video={this.state.selectedVideo}/>
         <VideoList
           videos={this.state.videos}
