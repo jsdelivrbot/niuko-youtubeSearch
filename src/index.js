@@ -4,6 +4,7 @@ import SearchBar from './components/search_bar'
 import VideoList from './components/video_list_item'
 import Ysearch from './fetchYoutube'
 import VideoDetail from './components/video_detail'
+import _ from 'lodash'
 
 const API_KEY_YOUTUBE = 'AIzaSyAgFZc8KejemmzoR6qzunRH4OyoYWXg34Y'
 
@@ -29,16 +30,17 @@ class App extends React.Component {
   }
 
   render() {
+    const videoSearch = _.debounce((newInput) => {
+      this.searchYoutube((newInput))
+    }, 300)
+
     return (
       <div>
         <SearchBar
           searchInput={this.state.searchInput}
-          onChangeInput={(newInput) => {
-            this.setState({
-              searchInput: newInput
-            })
-            this.searchYoutube(newInput)
-          }}/>
+          initialSearch={this.state.searchInput}
+          onVideoSearch={videoSearch}
+        />
         <VideoDetail video={this.state.selectedVideo}/>
         <VideoList
           videos={this.state.videos}

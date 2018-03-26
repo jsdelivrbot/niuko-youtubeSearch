@@ -1,17 +1,27 @@
 import React from 'react'
 
-const SearchBar = ({searchInput, onChangeInput}) => {
-  return (
-    <div className="search-bar">
-      <input
-        type="string"
-        value={searchInput}
-        onChange={(e)=>{
-          onChangeInput(e.target.value)
-        }}
-      />
-    </div>
-  )
+class SearchBar extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      term: this.props.initialSearch
+    }
+  }
+
+  render() {
+    return (
+      <div className="search-bar">
+        <input
+          type="string"
+          value={this.state.term}
+          onChange={(e) => {
+            this.setState({term: e.target.value})
+            this.props.onVideoSearch(e.target.value)
+          }}
+        />
+      </div>
+    )
+  }
 }
 
 export default SearchBar
