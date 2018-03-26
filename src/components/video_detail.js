@@ -8,7 +8,6 @@ const VideoDetail = ({video}) => {
   // Nota bene: sto usanto la sintassi template-string di ES6
   const url = `https://www.youtube.com/embed/${videoId}`
 
-  console.log(url)
   return (
     <div className="video-detail col-md-8">
       <div className="embed-response embed-response-16by9">

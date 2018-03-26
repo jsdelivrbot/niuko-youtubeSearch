@@ -11,25 +11,32 @@ class App extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      videos: []
+      videos: [],
+      selectedVideo: null
     }
   }
 
   componentDidMount() {
     Ysearch({key: API_KEY_YOUTUBE, term: 'Marvel Movies'}).then((res) => {
-      console.log('Ysearch: ',res.items)
-      this.setState({videos: res.items})
+      const videos = res.items
+      this.setState({videos, selectedVideo: videos[0]})
     }).catch((e) => console.log(e))
   }
 
   render() {
-    console.log('render')
     return (
       <div>
         <SearchBar/>
         <br/>
-        <VideoDetail video={this.state.videos[0]} />
-        <VideoList videos={this.state.videos}/>
+        <VideoDetail video={this.state.selectedVideo}/>
+        <VideoList
+          videos={this.state.videos}
+          onVideoSelect={(video) => {
+            this.setState(() => ({
+              selectedVideo: video
+            }))
+          }}
+        />
       </div>
     )
   }
