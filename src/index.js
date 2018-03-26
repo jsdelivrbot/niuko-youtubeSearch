@@ -12,15 +12,17 @@ class App extends React.Component {
     this.state = {
       videos: []
     }
+  }
+
+  componentDidMount() {
     Ysearch({key: API_KEY_YOUTUBE, term: 'Marvel Movies'}).then((res) => {
-      console.log(res.items)
-      this.setState(() => {
-        return {videos: res.items}
-      })
+      console.log('Ysearch: ',res.items)
+      this.setState({videos: res.items})
     }).catch((e) => console.log(e))
   }
 
   render() {
+    console.log('render')
     return (
       <div>
         <SearchBar/>

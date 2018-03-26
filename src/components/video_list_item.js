@@ -1,22 +1,21 @@
 import React from 'react'
+import VideoItem from './video_item'
 
+/**
+ * Vd. https://getbootstrap.com/ per maggiori dettagli su classi CSS
+ * usate per decorare il markup dei seguenti componenti funzionali.
+ * @param videos
+ */
 const getVideoJsx = (videos) => {
-  return videos.map((movie) => {
-    const key = movie.etag
-    const snippet = movie.snippet
-    const {title, description} = snippet
-    const thumbUrl = snippet.thumbnails.default.url
-    return (
-      <div key={key}>
-        <div>{title}</div> <br />
-        <div>{description}</div>
-        <img src={thumbUrl}/>
-      </div>
-    )
-  })
+    return videos.map((video) => {
+      return (
+        <VideoItem video={video} key={video.etag}/>
+      )
+    })
 }
 
 const VideoList = ({videos}) => {
+  console.log('VideoList',videos)
   return (
     <div>
       {getVideoJsx(videos)}
