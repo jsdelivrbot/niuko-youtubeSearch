@@ -28,6 +28,7 @@ class App extends React.Component {
         <SearchBar/>
         <br/>
         <VideoList videos={this.state.videos}/>
+
       </div>
     )
   }
